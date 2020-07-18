@@ -5,6 +5,12 @@ import {
   IonToolbar,
   IonTitle,
   IonHeader,
+  IonInput,
+  IonLabel,
+  IonGrid,
+  IonCol,
+  IonRow,
+  IonButton,
 } from "@ionic/react";
 
 /* Core CSS required for Ionic components to work properly */
@@ -34,7 +40,34 @@ const App: React.FC = () => (
       </IonToolbar>
     </IonHeader>
 
-    <IonContent color="light"></IonContent>
+    <IonContent className="ion-padding">
+      <IonGrid>
+        <IonRow>
+          <IonCol>
+            <IonLabel>Your Height: </IonLabel>
+            <IonInput type="number"></IonInput>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol>
+            <IonLabel>Your Weight: </IonLabel>
+            <IonInput type="number"></IonInput>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol>
+            <IonButton color="success">
+              <IonLabel>Calculate</IonLabel>
+            </IonButton>
+          </IonCol>
+          <IonCol>
+            <IonButton color="success">
+              <IonLabel>Clear Inputs</IonLabel>
+            </IonButton>
+          </IonCol>
+        </IonRow>
+      </IonGrid>
+    </IonContent>
   </IonApp>
 );
 
