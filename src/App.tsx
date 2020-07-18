@@ -1,5 +1,11 @@
 import React from "react";
-import { IonApp } from "@ionic/react";
+import {
+  IonApp,
+  IonContent,
+  IonToolbar,
+  IonTitle,
+  IonHeader,
+} from "@ionic/react";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -20,6 +26,16 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 
-const App: React.FC = () => <IonApp></IonApp>;
+const App: React.FC = () => (
+  <IonApp>
+    <IonHeader>
+      <IonToolbar color="success">
+        <IonTitle>BMI Calculator</IonTitle>
+      </IonToolbar>
+    </IonHeader>
+
+    <IonContent color="light"></IonContent>
+  </IonApp>
+);
 
 export default App;
