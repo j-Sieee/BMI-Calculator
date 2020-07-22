@@ -10,8 +10,9 @@ import {
   IonGrid,
   IonCol,
   IonRow,
-  IonButton,
 } from "@ionic/react";
+
+import BmiControls from "./components/BmiControls";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -52,6 +53,11 @@ const App: React.FC = () => {
 
     console.log(bmi);
   };
+
+  const resetInputs = () => {
+    inputHeightRef.current!.value = "";
+    inputWeightRef.current!.value = "";
+  };
   return (
     <IonApp>
       <IonHeader>
@@ -74,18 +80,7 @@ const App: React.FC = () => {
               <IonInput ref={inputWeightRef} type="number"></IonInput>
             </IonCol>
           </IonRow>
-          <IonRow>
-            <IonCol>
-              <IonButton onClick={calcbutton} color="success">
-                <IonLabel>Calculate</IonLabel>
-              </IonButton>
-            </IonCol>
-            <IonCol>
-              <IonButton color="success">
-                <IonLabel>Clear Inputs</IonLabel>
-              </IonButton>
-            </IonCol>
-          </IonRow>
+          <BmiControls onCalculate={calcbutton} onReset={resetInputs} />
         </IonGrid>
       </IonContent>
     </IonApp>
