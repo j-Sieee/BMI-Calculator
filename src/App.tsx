@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   IonApp,
   IonContent,
@@ -32,8 +32,11 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import BmiResults from "./components/BmiResults";
 
 const App: React.FC = () => {
+  const [setCalculate, calculatedunit] = useState<number>();
+
   const inputHeightRef = useRef<HTMLIonInputElement>(null);
   const inputWeightRef = useRef<HTMLIonInputElement>(null);
 
@@ -51,7 +54,7 @@ const App: React.FC = () => {
     }
     const bmi = +enteredWeight / (+enteredHeight * +enteredHeight);
 
-    console.log(bmi);
+    calculatedunit(bmi);
   };
 
   const resetInputs = () => {
@@ -81,6 +84,7 @@ const App: React.FC = () => {
             </IonCol>
           </IonRow>
           <BmiControls onCalculate={calcbutton} onReset={resetInputs} />
+          {setCalculate && <BmiResults result={setCalculate} />}
         </IonGrid>
       </IonContent>
     </IonApp>
