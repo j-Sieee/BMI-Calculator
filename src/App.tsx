@@ -58,8 +58,12 @@ const App: React.FC = () => {
   };
 
   const resetInputs = () => {
+    const bmi = 0;
+
     inputHeightRef.current!.value = "";
     inputWeightRef.current!.value = "";
+
+    calculatedunit(bmi);
   };
   return (
     <IonApp>
@@ -84,7 +88,7 @@ const App: React.FC = () => {
             </IonCol>
           </IonRow>
           <BmiControls onCalculate={calcbutton} onReset={resetInputs} />
-          {setCalculate && <BmiResults result={setCalculate} />}
+          <BmiResults result={setCalculate || 0} />
         </IonGrid>
       </IonContent>
     </IonApp>
