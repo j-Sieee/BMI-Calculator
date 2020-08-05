@@ -10,6 +10,9 @@ import {
   IonGrid,
   IonCol,
   IonRow,
+  IonToast,
+  IonSegment,
+  IonSegmentButton,
 } from "@ionic/react";
 
 import BmiControls from "./components/BmiControls";
@@ -36,6 +39,7 @@ import BmiResults from "./components/BmiResults";
 
 const App: React.FC = () => {
   const [setCalculate, calculatedunit] = useState<number>();
+  const [showToast1, setShowToast1] = useState(false);
 
   const inputHeightRef = useRef<HTMLIonInputElement>(null);
   const inputWeightRef = useRef<HTMLIonInputElement>(null);
@@ -50,6 +54,8 @@ const App: React.FC = () => {
       enteredWeight <= 0 ||
       enteredHeight <= 0
     ) {
+      setShowToast1(true);
+
       return;
     }
     const bmi = +enteredWeight / (+enteredHeight * +enteredHeight);
@@ -67,6 +73,13 @@ const App: React.FC = () => {
   };
   return (
     <IonApp>
+      <IonToast
+        isOpen={showToast1}
+        onDidDismiss={() => setShowToast1(false)}
+        message="Please check your inputs."
+        duration={1000}
+      />
+
       <IonHeader>
         <IonToolbar color="success">
           <IonTitle>BMI Calculator</IonTitle>
@@ -75,6 +88,18 @@ const App: React.FC = () => {
 
       <IonContent className="ion-padding">
         <IonGrid>
+          <IonRow>
+            <IonCol>
+              <IonSegment>
+                <IonSegmentButton>
+                  <IonLabel>m/kg</IonLabel>
+                </IonSegmentButton>
+                <IonSegmentButton>
+                  <IonLabel>ft/lbs</IonLabel>
+                </IonSegmentButton>
+              </IonSegment>
+            </IonCol>
+          </IonRow>
           <IonRow>
             <IonCol>
               <IonLabel>Your Height: </IonLabel>
